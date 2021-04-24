@@ -1,19 +1,19 @@
-package com.example.mad03_fragments_and_navigation
+package com.example.mad03_fragments_and_navigation.quiz
 
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.RadioGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import com.example.mad03_fragments_and_navigation.quiz.QuizFragmentDirections
+import com.example.mad03_fragments_and_navigation.R
 import com.example.mad03_fragments_and_navigation.databinding.FragmentQuizBinding
-import com.example.mad03_fragments_and_navigation.models.QuestionCatalogue
 
 
 class QuizFragment : Fragment() {
@@ -50,22 +50,76 @@ class QuizFragment : Fragment() {
 
         //setQuestionProgress()
 
-        /*
+
         binding.btnNext.setOnClickListener {
-            nextQuestion()
+            btnNextClicked()
         }
-         */
 
 
-        viewModel.btnNext.observe(viewLifecycleOwner, Observer {
-            if (it == true) {
-                viewModel.nextQuestion()
+        viewModel.vmQuizEnd.observe(viewLifecycleOwner, Observer {
+            if (it) {
+                navToQuizEnd()
             }
+        })
+
+        viewModel.message.observe(viewLifecycleOwner, Observer {
+            Toast.makeText(
+                requireContext(), "$it", Toast.LENGTH_LONG
+            ).show()
         })
 
 
         return binding.root
     }
+
+    /**
+     * Functions
+     */
+
+    private fun btnNextClicked() {
+
+        getIndexRadioBtn().let {
+            if (it != null) {
+                viewModel.vmBtnNextClicked(it)
+                resetRadioButtons()
+            }
+        }
+    }
+
+
+    private fun getIndexRadioBtn(): Int? {
+        return when (binding.answerBox.checkedRadioButtonId) {
+            R.id.answer1 -> 0
+            R.id.answer2 -> 1
+            R.id.answer3 -> 2
+            R.id.answer4 -> 3
+            else -> {
+                Toast.makeText(
+                    requireContext(),
+                    "Keine Antwort ausgewählt",
+                    Toast.LENGTH_LONG
+                )
+                    .show()
+                null
+            }
+        }
+    }
+
+    private fun resetRadioButtons() {
+        binding.answerBox.clearCheck()
+    }
+
+    private fun navToQuizEnd() {
+        // Navigate to QuizEnd
+        requireView().findNavController()
+            .navigate(
+                QuizFragmentDirections.actionQuizFragmentToQuizEndFragment(
+                    viewModel.score,
+                    viewModel.questions.size
+                )
+            )
+    }
+
 
     /*
     private fun nextQuestion() {
@@ -92,23 +146,7 @@ class QuizFragment : Fragment() {
         }
     }
 
-    private fun getIndexRadioBtn(): Int? {
-        return when (binding.answerBox.checkedRadioButtonId) {
-            R.id.answer1 -> 0
-            R.id.answer2 -> 1
-            R.id.answer3 -> 2
-            R.id.answer4 -> 3
-            else -> {
-                Toast.makeText(
-                    requireContext(),
-                    "Keine Antwort ausgewählt",
-                    Toast.LENGTH_LONG
-                )
-                    .show()
-                null
-            }
-        }
-    }
+
 
 
     private fun checkIfNotEmpty(): Boolean? {

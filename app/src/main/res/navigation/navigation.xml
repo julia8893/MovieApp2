@@ -13,10 +13,14 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_movieDetailFragment"
-            app:destination="@id/movieDetailFragment" />
+            app:destination="@id/movieDetailFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false" />
         <action
             android:id="@+id/action_homeFragment_to_quizFragment"
-            app:destination="@id/quizFragment" />
+            app:destination="@id/quizFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/movieDetailFragment"
@@ -35,26 +39,35 @@
         tools:layout="@layout/fragment_watchlist" />
     <fragment
         android:id="@+id/quizFragment"
-        android:name="com.example.mad03_fragments_and_navigation.QuizFragment"
+        android:name="com.example.mad03_fragments_and_navigation.quiz.QuizFragment"
         tools:layout="@layout/fragment_quiz"
         android:label="QuizFragment" >
         <action
             android:id="@+id/action_quizFragment_to_quizEndFragment"
-            app:destination="@id/quizEndFragment" />
+            app:destination="@id/quizEndFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/quizEndFragment"
-        android:name="com.example.mad03_fragments_and_navigation.QuizEndFragment"
+        android:name="com.example.mad03_fragments_and_navigation.quizend.QuizEndFragment"
         tools:layout="@layout/fragment_quiz_end"
         android:label="QuizEndFragment" >
         <action
             android:id="@+id/action_quizEndFragment_to_quizFragment"
-            app:destination="@id/quizFragment" />
+            app:destination="@id/quizFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="false" />
         <argument
             android:name="score"
             app:argType="integer" />
         <argument
             android:name="questionsCount"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_quizEndFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

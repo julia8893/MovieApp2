@@ -19,7 +19,7 @@
 
         <variable
             name="quizViewModel"
-            type="com.example.mad03_fragments_and_navigation.QuizViewModel" />
+            type="com.example.mad03_fragments_and_navigation.quiz.QuizViewModel" />
 
     </data>
 
@@ -28,7 +28,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimary"
-        tools:context=".QuizFragment">
+        tools:context=".quiz.QuizFragment">
 
         <TextView
             android:id="@+id/currentQuestionText"
@@ -63,8 +63,7 @@
             app:layout_constraintBottom_toTopOf="@+id/btnNext"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/questionText"
-            android:onCheckedChanged="@{() -> quizViewModel.test}">
+            app:layout_constraintTop_toBottomOf="@+id/questionText">
 
             <RadioButton
                 android:id="@+id/answer1"
@@ -102,7 +101,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:onClick="@{() -> quizViewModel.btnNextClicked()}"
             android:text="@string/next"
             app:backgroundTint="@color/colorAccent"
             app:layout_constraintBottom_toBottomOf="parent"
