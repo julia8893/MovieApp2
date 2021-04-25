@@ -52,7 +52,6 @@ class QuizEndFragment : Fragment() {
         // show score
         showEndScore()
 
-
         binding.btnRestart.setOnClickListener {
             navToQuiz()
         }
@@ -75,7 +74,6 @@ class QuizEndFragment : Fragment() {
 
         binding.score = viewModel.vmScore.value
         binding.questionsCount = viewModel.vmQuestionsCount.value
-
-
     }
+
 }

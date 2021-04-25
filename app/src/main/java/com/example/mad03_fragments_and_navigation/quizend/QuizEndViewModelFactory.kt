@@ -5,12 +5,12 @@ import androidx.lifecycle.ViewModelProvider
 
 class QuizEndViewModelFactory(
     private val finalScore: Int,
-    private val finalQuestions: Int
+    private val questionsCount: Int
 ) :
     ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(QuizEndViewModel::class.java)) {
-            return QuizEndViewModel(finalScore, finalQuestions) as T
+            return QuizEndViewModel(finalScore, questionsCount) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

@@ -1,6 +1,7 @@
 package com.example.mad03_fragments_and_navigation.quizend
 
 import android.app.Application
+import android.os.CountDownTimer
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -32,6 +33,7 @@ class QuizEndViewModel(finalScore: Int, finalQuestions: Int) : ViewModel() {
         Log.i("QuizEndViewModel", "QuizEndViewModel created")
         Log.i("QuizEndViewModel", "Final score is $finalScore")
     }
+
 
     override fun onCleared() {
         super.onCleared()

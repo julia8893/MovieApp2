@@ -50,11 +50,9 @@ class QuizFragment : Fragment() {
 
         //setQuestionProgress()
 
-
         binding.btnNext.setOnClickListener {
             btnNextClicked()
         }
-
 
         viewModel.vmQuizEnd.observe(viewLifecycleOwner, Observer {
             if (it) {
@@ -67,7 +65,6 @@ class QuizFragment : Fragment() {
                 requireContext(), "$it", Toast.LENGTH_LONG
             ).show()
         })
-
 
         return binding.root
     }
@@ -120,8 +117,8 @@ class QuizFragment : Fragment() {
             )
     }
 
-
     /*
+
     private fun nextQuestion() {
         // get selected answer
         // check if is correct answer
@@ -146,9 +143,6 @@ class QuizFragment : Fragment() {
         }
     }
 
-
-
-
     private fun checkIfNotEmpty(): Boolean? {
 
         var bool: Boolean
@@ -163,7 +157,6 @@ class QuizFragment : Fragment() {
         }
         return bool
     }
-
 
     private fun setNextQuestion() {
 
@@ -180,7 +173,6 @@ class QuizFragment : Fragment() {
         binding.questionsCount = questions.size
         Log.i("QuizFragment", "Question ${index + 1} / ${questions.size}")
     }
-
 
     private fun checkIfCorrect() {
 
@@ -214,14 +206,12 @@ class QuizFragment : Fragment() {
         binding.answerBox.clearCheck()
     }
 
-
     // randomize the questions and set the first question
     private fun randomizeQuestions() {
         questions.shuffle()
         index = 0
         setNextQuestion()
     }
-
 
      */
 }
